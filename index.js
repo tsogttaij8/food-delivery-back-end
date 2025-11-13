@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json("hello world, hi 12 running");
+  res.json("hello world, hi 00 12 running");
   console.log("req", req);
 });
 
