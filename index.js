@@ -12,13 +12,18 @@ app.use(express.json());
 connectToDB();
 
 app.get("/", async (req, res) => {
-  const data = await UserModel.create({
-    firstname: "Tomboss",
-    email: "tomboss@yahoo.com",
-  });
-  console.log(data);
-  res.json("hello world, hi 00 12 running");
-  console.log("req", req);
+  const { firstname, email } = req.body;
+  try {
+    const data = await UserModel.create({
+      firstname: firstname,
+      email: email,
+    });
+    console.log(data);
+    res.json("hello world, hi 00 12 running");
+    console.log("req", req.body);
+  } catch (err) {
+    res.json(err);
+  }
 });
 
 app.listen(PORT, () => {
