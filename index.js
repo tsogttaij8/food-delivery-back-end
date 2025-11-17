@@ -3,6 +3,9 @@ const cors = require("cors");
 const connectToDB = require("./db");
 const UserModel = require("./schemas/userSchema");
 // mongodb+srv://b94889340_db_user:3EKM0A9YHOAwTgBQ@food-delivery.udhdj2q.mongodb.net/
+
+const userRouter = require("./userRoutes/userRoutes");
+
 const app = express();
 const PORT = process.env.PORT || 1000;
 
@@ -11,19 +14,25 @@ app.use(express.json());
 
 connectToDB();
 
-app.get("/", async (req, res) => {
-  const { firstname, email } = req.body;
-  try {
-    const data = await UserModel.create({
-      firstname: firstname,
-      email: email,
-    });
-    console.log(data);
-    res.json("hello world, hi 00 12 running");
-    console.log("req", req.body);
-  } catch (err) {
-    res.json(err);
-  }
+// app.get("/", async (req, res) => {
+//   const { firstname, email } = req.body;
+//   try {
+//     const data = await UserModel.create({
+//       firstname: firstname,
+//       email: email,
+//     });
+//     console.log(data);
+//     res.json("hello world, hi 00 12 running");
+//     console.log("req", req.body);
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
+
+app.use("/user", userRouter);
+
+app.get("/", (req, res) => {
+  res.send("hello world working");
 });
 
 app.listen(PORT, () => {
