@@ -14,22 +14,9 @@ app.use(express.json());
 
 connectToDB();
 
-// app.get("/", async (req, res) => {
-//   const { firstname, email } = req.body;
-//   try {
-//     const data = await UserModel.create({
-//       firstname: firstname,
-//       email: email,
-//     });
-//     console.log(data);
-//     res.json("hello world, hi 00 12 running");
-//     console.log("req", req.body);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
-
 app.use("/user", userRouter);
+// app.use("foodcategory", categoryRouter)
+
 
 app.get("/", (req, res) => {
   res.send("hello world working");

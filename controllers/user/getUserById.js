@@ -1,20 +1,17 @@
+const { get } = require("mongoose");
 const UserModel = require("../../schemas/userSchema");
 
-const getUserById = async (req, res) => {
-  const getId = req.params.userId;
-  console.log(getId, "idididid");
-  try {
-    const data = await UserModel.findById(getId);
-    // ({
-    //   id,
-    // });
-    console.log(data);
+const getUser = async (req, res) => {
+  const { id } = req.body;
 
+  console.log(id, "idididid");
+
+  try {
+    const data = await UserModel.findById(id);
     res.status(200).json(data);
   } catch (err) {
-    console.log(err);
-    res.json(err);
+    res.status(500).json(`somethin went wrong: ${err}`);
   }
 };
 
-module.exports = getUserById;
+module.exports = getUser;
