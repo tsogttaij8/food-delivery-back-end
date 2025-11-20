@@ -4,7 +4,8 @@ const connectToDB = require("./db");
 const UserModel = require("./schemas/userSchema");
 // mongodb+srv://b94889340_db_user:3EKM0A9YHOAwTgBQ@food-delivery.udhdj2q.mongodb.net/
 
-const userRouter = require("./userRoutes/userRoutes");
+const userRouter = require("./Routes/userRoutes");
+const AuthenticationRouter = require("./Routes/authentication");
 
 const app = express();
 const PORT = process.env.PORT || 1000;
@@ -15,11 +16,10 @@ app.use(express.json());
 connectToDB();
 
 app.use("/user", userRouter);
-// app.use("foodcategory", categoryRouter)
-
+app.use("/authentication", AuthenticationRouter);
 
 app.get("/", (req, res) => {
-  res.send("hello world working");
+  res.send("hello world running");
 });
 
 app.listen(PORT, () => {
