@@ -19,7 +19,7 @@ connectToDB();
 app.use("/user", userRouter);
 app.use("/authentication", AuthenticationRouter);
 
-app.use("/category", categoryRouter);
+app.use("/category", categoryRouter)
 
 app.get("/", (req, res) => {
   res.send("hello world running");
