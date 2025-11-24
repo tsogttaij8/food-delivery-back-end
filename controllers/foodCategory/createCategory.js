@@ -8,14 +8,17 @@ const createCategory = async (req, res) => {
       categoryName: categoryName,
     });
     console.log("data", data);
-    res.status(201).json(`createdCategory: ${data}`);
+    res.status(201).json({
+      message: "Category created",
+      data,
+    });
   } catch (err) {
     console.log("error", err);
-    res
-      .status(500)
-      .json("Something went wrong to create category, try again", err);
+    res.status(500).json({
+      message: "Something went wrong to create category, try again",
+      error: err.message,
+    });
   }
 };
 
 module.exports = createCategory;
-
