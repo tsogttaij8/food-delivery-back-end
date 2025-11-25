@@ -7,6 +7,7 @@ const UserModel = require("./schemas/userSchema");
 const userRouter = require("./Routes/userRoutes");
 const AuthenticationRouter = require("./Routes/authentication");
 const categoryRouter = require("./Routes/categoryRoutes");
+const foodRouter = require("./Routes/foodRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 1000;
@@ -19,7 +20,8 @@ connectToDB();
 app.use("/user", userRouter);
 app.use("/authentication", AuthenticationRouter);
 
-app.use("/category", categoryRouter)
+app.use("/category", categoryRouter);
+app.use("/food", foodRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world running");

@@ -1,6 +1,7 @@
 const express = require("express");
-const createCategory = require("../controllers/foodCategory/createCategory");
-const getCategories = require("../controllers/foodCategory/getCategories");
+const getCategories = require("../controllers/Category/getCategories");
+const createCategory = require("../controllers/Category/createCategory");
+
 const categoryRouter = express.Router();
 
 categoryRouter.post("/add-category", createCategory);
