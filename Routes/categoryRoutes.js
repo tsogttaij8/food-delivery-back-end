@@ -4,7 +4,7 @@ const createCategory = require("../controllers/Category/createCategory");
 
 const categoryRouter = express.Router();
 
-categoryRouter.post("/add-category", createCategory);
-categoryRouter.get("/get-categories", getCategories);
+categoryRouter.post("/", createCategory);
+categoryRouter.get("/", getCategories);
 
 module.exports = categoryRouter;
