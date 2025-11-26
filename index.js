@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const connectToDB = require("./db");
 const UserModel = require("./schemas/userSchema");
+require("dotenv").config();
+
 // mongodb+srv://b94889340_db_user:3EKM0A9YHOAwTgBQ@food-delivery.udhdj2q.mongodb.net/
 
 const userRouter = require("./Routes/userRoutes");

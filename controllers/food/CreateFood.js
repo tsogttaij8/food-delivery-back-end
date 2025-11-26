@@ -1,25 +1,31 @@
+const { default: mongoose } = require("mongoose");
+const { uploadToCloudinary } = require("../../middleWare/upload");
 const foodModel = require("../../schemas/food");
 
 const createFood = async (req, res) => {
-  const { foodName, foodPrice, foodImage, foodIngredients } = req.body;
   try {
+    if (!req.file)
+      return res.status(400).json({ message: "Food image is required" });
+
+    const result = await uploadToCloudinary(
+      req.file.buffer,
+      Date.now().toString()
+    );
+
     const data = await foodModel.create({
-      foodName: foodName,
-      foodPrice: foodPrice,
-      foodImage: foodImage,
-      foodIngredients: foodIngredients,
+      category: req.body.category, // шууд string _id
+      foodName: req.body.foodName,
+      foodPrice: req.body.foodPrice,
+      foodIngredients: req.body.foodIngredients,
+      foodImage: result.secure_url,
     });
-    console.log("data", data);
-    res.status(201).json({
-      message: "Food created",
-      data,
-    });
+
+    res.status(201).json({ message: "Food created", data });
   } catch (err) {
-    console.log("error", err);
-    res.status(500).json({
-      message: "Something went wrong to create Food, try again",
-      error: err.message,
-    });
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: "Error creating food", error: err.message });
   }
 };
 

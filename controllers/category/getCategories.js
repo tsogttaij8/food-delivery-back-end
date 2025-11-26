@@ -9,7 +9,7 @@ const getCategories = async (req, res) => {
           from: "foods",
           localField: "_id",
           foreignField: "category",
-          as: "Food",
+          as: "foods",
         },
       },
     ]);

@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, Mongoose, default: mongoose } = require("mongoose");
 
 const foodSchema = new Schema(
   {
@@ -14,15 +14,15 @@ const foodSchema = new Schema(
       type: String,
       required: [true],
     },
-    // foodImage: {
-    //   type: String,
-    //   required: [true],
-    // },
-    // category: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "Category",
-    //   required: true,
-    // },
+    foodImage: {
+      type: String,
+      required: [true],
+    },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
   },
   { timestamps: true }
 );
