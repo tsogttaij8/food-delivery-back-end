@@ -1,9 +1,9 @@
 const foodModel = require("../../schemas/food");
-const { uploadToCloudinary } = require("../../middleWare/upload");
 
 const updateFood = async (req, res) => {
   try {
-    const { id, category, foodName, foodPrice, foodIngredients } = req.body;
+    const { id, category, foodName, foodPrice, foodIngredients, foodImage } =
+      req.body;
 
     if (!id) {
       return res.status(400).json({ message: "Food ID is required" });
@@ -16,12 +16,9 @@ const updateFood = async (req, res) => {
       foodIngredients,
     };
 
-    if (req.file) {
-      const result = await uploadToCloudinary(
-        req.file.buffer,
-        Date.now().toString()
-      );
-      updateData.foodImage = result.secure_url;
+    // Frontend-ээс Cloudinary URL ирсэн бол
+    if (foodImage) {
+      updateData.foodImage = foodImage; // --> URL шууд хадгална
     }
 
     const updatedFood = await foodModel.findByIdAndUpdate(id, updateData, {
