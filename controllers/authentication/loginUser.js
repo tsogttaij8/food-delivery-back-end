@@ -1,6 +1,7 @@
 const UserModel = require("../../schemas/userSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { generateToken } = require("../../middleWare/generateToken");
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -12,16 +13,18 @@ const loginUser = async (req, res) => {
     }
 
     const hashedPassword = user.password;
-    console.log("body password", password);
-    console.log("database password", hashedPassword);
+    // console.log("body password", password);
+    // console.log("database password", hashedPassword);
     const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
 
     if (!isPasswordMatch) {
       res.status(404).json(`password not matching ${err}`);
     } else {
+      const token = generateToken(user);
       res.status(200).json({
         message: "successfully signed in",
         user: user,
+        token,
       });
     }
   } catch (err) {
