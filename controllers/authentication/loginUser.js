@@ -18,7 +18,7 @@ const loginUser = async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
 
     if (!isPasswordMatch) {
-      res.status(404).json(`password not matching ${err}`);
+      res.status(404).json(`password not matching `);
     } else {
       const token = generateToken(user);
       res.status(200).json({
