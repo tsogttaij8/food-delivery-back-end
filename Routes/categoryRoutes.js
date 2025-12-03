@@ -5,7 +5,7 @@ const verifyJwt = require("../middleWare/verifyJWT");
 
 const categoryRouter = express.Router();
 
-categoryRouter.post("/", verifyJwt, createCategory);
+categoryRouter.post("/", createCategory);
 categoryRouter.get("/", getCategories);
 
 module.exports = categoryRouter;

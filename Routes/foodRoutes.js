@@ -4,10 +4,11 @@ const deleteFood = require("../controllers/food/deleteFood");
 const updateFood = require("../controllers/food/updateFood");
 const createFood = require("../controllers/food/CreateFood");
 const getFoodsByIds = require("../controllers/food/getFoodsByIds");
+const verifyJwt = require("../middleWare/verifyJWT");
 
 const foodRouter = express.Router();
 
-foodRouter.post("/", createFood);
+foodRouter.post("/", verifyJwt, createFood);
 foodRouter.put("/", updateFood);
 foodRouter.get("/", getFoods);
 foodRouter.delete("/:id", deleteFood);
