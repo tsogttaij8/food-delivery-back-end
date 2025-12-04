@@ -1,11 +1,13 @@
 const express = require("express");
 const getCategories = require("../controllers/Category/getCategories");
-const createCategory = require("../controllers/Category/createCategory");
 const verifyJwt = require("../middleWare/verifyJWT");
+const createCategory = require("../controllers/category/createCategory");
+const deleteCategory = require("../controllers/category/deleteCategory");
 
 const categoryRouter = express.Router();
 
 categoryRouter.post("/", createCategory);
 categoryRouter.get("/", getCategories);
+categoryRouter.delete("/:id", deleteCategory);
 
 module.exports = categoryRouter;
