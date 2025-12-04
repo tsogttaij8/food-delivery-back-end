@@ -1,12 +1,12 @@
-const CategoryModel = require("../../schemas/foodCategory");
+const orderModel = require("../../schemas/orderSchema");
 
 const updateOrderStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
 
-    const order = await Order.findById(id);
-    if (!order) return res.status(404).json({ message: "Захиалга олдсонгүй" });
+    const order = await orderModel.findById(id);
+    if (!order) return res.status(404).json({ message: "zahialga baihgui!" });
 
     order.status = status || order.status;
     await order.save();

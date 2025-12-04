@@ -1,4 +1,4 @@
-const Order = require("../models/orderModel");
+const orderModel = require("../../schemas/orderSchema");
 
 const createOrder = async (req, res) => {
   try {
@@ -10,12 +10,10 @@ const createOrder = async (req, res) => {
       !FoodOrderItems ||
       FoodOrderItems.length === 0
     ) {
-      return res
-        .status(400)
-        .json({ message: "Бүх шаардлагатай талбарыг бөглөнө үү" });
+      return res.status(400).json({ message: "buh talbariig boglon uu!" });
     }
 
-    const newOrder = await Order.create({
+    const newOrder = await orderModel.create({
       user,
       totalPrice,
       FoodOrderItems,
