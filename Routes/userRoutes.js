@@ -4,6 +4,7 @@ const deleteUser = require("../controllers/user/deleteUser");
 const createUser = require("../controllers/user/CreateUser");
 const loginUser = require("../controllers/authentication/loginUser");
 const verifyJwt = require("../middleWare/verifyJWT");
+const { generateToken } = require("../middleWare/generateToken");
 
 const userRouter = express.Router();
 

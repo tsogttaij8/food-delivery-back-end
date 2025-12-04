@@ -6,7 +6,7 @@ const deleteCategory = require("../controllers/category/deleteCategory");
 
 const categoryRouter = express.Router();
 
-categoryRouter.post("/", createCategory);
+categoryRouter.post("/", verifyJwt, createCategory);
 categoryRouter.get("/", getCategories);
 categoryRouter.delete("/:id", deleteCategory);
 
