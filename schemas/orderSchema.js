@@ -14,6 +14,7 @@ const orderSchema = new Schema(
     },
     FoodOrderItems: [
       {
+        _id: false,
         food: {
           type: Types.ObjectId,
           ref: "Food",
@@ -23,11 +24,6 @@ const orderSchema = new Schema(
           type: Number,
           required: true,
           min: 1,
-        },
-        price: {
-          type: Number,
-          required: true,
-          min: 0,
         },
       },
     ],

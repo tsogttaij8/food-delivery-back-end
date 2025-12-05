@@ -2,6 +2,7 @@ const CategoryModel = require("../../schemas/foodCategory");
 
 const createCategory = async (req, res) => {
   const { categoryName } = req.body;
+  console.log("req.user,", req.user);
   console.log("categoryName", categoryName);
   try {
     const data = await CategoryModel.create({

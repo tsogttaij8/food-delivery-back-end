@@ -10,6 +10,7 @@ const userRouter = require("./Routes/userRoutes");
 const AuthenticationRouter = require("./Routes/authentication");
 const categoryRouter = require("./Routes/categoryRoutes");
 const foodRouter = require("./Routes/foodRoutes");
+const orderRouter = require("./Routes/orderRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 1000;
@@ -24,6 +25,7 @@ app.use("/authentication", AuthenticationRouter);
 
 app.use("/category", categoryRouter);
 app.use("/food", foodRouter);
+app.use("/order", orderRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world running");
