@@ -27,6 +27,10 @@ const orderSchema = new Schema(
         },
       },
     ],
+    deliveryLocation: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       enum: ["pending", "cancelled", "delivered"],

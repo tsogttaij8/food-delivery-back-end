@@ -12,7 +12,7 @@ const verifyOrderJWT = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "TOM_BOSS");
     console.log("Decoded token:", decoded);
-    req.userId = decoded.id; // userId-г middleware-аар дамжуулна
+    req.userId = decoded.id; 
     next();
   } catch (err) {
     console.log("JWT error:", err);
