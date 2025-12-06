@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = process.env.JWT_SECRET || "TOM_BOSS"; // .env-д байхгүй бол default ашиглана
+const JWT_SECRET = "TOM_BOSS";
 
 const verifyOrderJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -11,7 +11,7 @@ const verifyOrderJWT = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET); // <- энд JWT_SECRET ашиглана
+    const decoded = jwt.verify(token, JWT_SECRET);
     req.userId = decoded.id;
     next();
   } catch (err) {
