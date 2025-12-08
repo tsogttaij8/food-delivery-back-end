@@ -2,19 +2,14 @@ const UserModel = require("../schemas/userSchema");
 
 const isUserExist = async (req, res, next) => {
   const { email } = req.body;
+  if (!email) return res.status(400).json("Email required");
 
-  if (!email) {
-    res.status(404).json("Email required");
+  const user = await UserModel.findOne({ email });
+  if (user) {
+    return res.status(400).json("Email already exist");
   }
 
-  const user = await UserModel.findOne({ email: email });
-
-  if (!user) {
-    res.status(404).json("User not found");
-  } else {
-    console.log("calling next");
-    next();
-  }
+  next();
 };
 
 module.exports = isUserExist;

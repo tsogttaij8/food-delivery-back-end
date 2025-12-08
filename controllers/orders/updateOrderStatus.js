@@ -6,9 +6,9 @@ const updateOrderStatus = async (req, res) => {
     const { status } = req.body;
 
     const order = await orderModel.findById(id);
-    if (!order) return res.status(404).json({ message: "zahialga baihgui!" });
+    if (!order) return res.status(404).json({ message: "Захиалга байхгүй!" });
 
-    order.status = status || order.status;
+    order.status = status;
     await order.save();
 
     res.status(200).json(order);
