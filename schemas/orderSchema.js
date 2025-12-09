@@ -36,6 +36,11 @@ const orderSchema = new Schema(
       enum: ["pending", "cancelled", "delivered"],
       default: "pending",
     },
+    orderNumber: {
+      type: Number,
+      unique: true,
+      required: true,
+    },
   },
   { timestamps: true }
 );
