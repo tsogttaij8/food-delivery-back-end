@@ -21,9 +21,6 @@ const createOrder = async (req, res) => {
     const { totalPrice, FoodOrderItems, status, deliveryLocation } = req.body;
     const user = req.userId;
 
-    // console.log("Request body:", req.body);
-    // console.log("User ID from token:", user);
-
     if (!user) {
       return res.status(401).json({ message: "newterj orno uu!" });
     }
