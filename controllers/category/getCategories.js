@@ -2,7 +2,6 @@ const CategoryModel = require("../../schemas/foodCategory");
 
 const getCategories = async (req, res) => {
   try {
-    // const data = await CategoryModel.find();
     const data = await CategoryModel.aggregate([
       {
         $lookup: {
