@@ -8,6 +8,6 @@ const categoryRouter = express.Router();
 
 categoryRouter.post("/", verifyJwt, createCategory);
 categoryRouter.get("/", getCategories);
-categoryRouter.delete("/:id", deleteCategory);
+categoryRouter.delete("/:id", verifyJwt, deleteCategory);
 
 module.exports = categoryRouter;
