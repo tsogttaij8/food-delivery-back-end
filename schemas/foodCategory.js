@@ -1,15 +1,22 @@
-const { model, Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const foodCategorySchema = new Schema(
+const categorySchema = new Schema(
   {
     categoryName: {
       type: String,
-      required: [true],
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-const CategoryModel = model("Category", foodCategorySchema);
+categorySchema.virtual("foods", {
+  ref: "Food",
+  localField: "_id",
+  foreignField: "category",
+});
 
-module.exports = CategoryModel;
+categorySchema.set("toJSON", { virtuals: true });
+categorySchema.set("toObject", { virtuals: true });
+
+module.exports = model("Category", categorySchema);
