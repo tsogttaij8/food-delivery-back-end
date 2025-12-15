@@ -8,9 +8,9 @@ const verifyJwt = require("../middleWare/verifyJWT");
 
 const orderRouter = express.Router();
 
-orderRouter.post("/", verifyOrderJWT, verifyJwt, createOrder);
+orderRouter.post("/", verifyOrderJWT, createOrder);
 orderRouter.get("/", getOrders);
 orderRouter.get("/user", verifyOrderJWT, getUserOrders);
-orderRouter.put("/:id/status", verifyJwt, updateOrderStatus);
+orderRouter.put("/:id/status", updateOrderStatus);
 
 module.exports = orderRouter;

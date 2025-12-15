@@ -1,21 +1,20 @@
 const CategoryModel = require("../../schemas/foodCategory");
+const FoodModel = require("../../schemas/food");
 
 const getCategories = async (req, res) => {
   try {
-    const data = await CategoryModel.aggregate([
-      {
-        $lookup: {
-          from: "foods",
-          localField: "_id",
-          foreignField: "category",
-          as: "foods",
-        },
-      },
-    ]);
+    const categories = await CategoryModel.find();
+    const foods = await FoodModel.find();
+
+    const data = categories.map((cat) => ({
+      ...cat.toObject(),
+      foods: foods.filter(
+        (food) => food.category?.toString() === cat._id.toString()
+      ),
+    }));
+
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).json(`something went wrong to getCategories: ${err}`);
+    res.status(500).json(err.message);
   }
 };
-
-module.exports = getCategories;

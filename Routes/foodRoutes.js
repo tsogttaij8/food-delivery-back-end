@@ -8,10 +8,10 @@ const verifyJwt = require("../middleWare/verifyJWT");
 
 const foodRouter = express.Router();
 
-foodRouter.post("/", verifyJwt, createFood);
-foodRouter.put("/", verifyJwt, updateFood);
+foodRouter.post("/", createFood);
+foodRouter.put("/", updateFood);
 foodRouter.get("/", getFoods);
-foodRouter.delete("/:id", verifyJwt, deleteFood);
+foodRouter.delete("/:id", deleteFood);
 
 foodRouter.post("/get-by-ids", getFoodsByIds);
 
