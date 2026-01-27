@@ -6,8 +6,8 @@ const getCategories = require("../controllers/category/getCategories");
 
 const categoryRouter = express.Router();
 
-categoryRouter.post("/", verifyJwt, createCategory);
+categoryRouter.post("/", createCategory);
 categoryRouter.get("/", getCategories);
-categoryRouter.delete("/:id", verifyJwt, deleteCategory);
+categoryRouter.delete("/:id", deleteCategory);
 
 module.exports = categoryRouter;

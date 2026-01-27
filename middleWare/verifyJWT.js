@@ -10,9 +10,9 @@ const verifyOrderJWT = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "TOM_BOSS");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "1234");
     console.log("Decoded token:", decoded);
-    req.userId = decoded.id; 
+    req.userId = decoded.id;
     next();
   } catch (err) {
     console.log("JWT error:", err);
